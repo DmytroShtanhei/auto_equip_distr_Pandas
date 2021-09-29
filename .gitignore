@@ -1,10 +1,10 @@
 # Project related source files
 *.xlsx
 dist/*.*
-!dist/auto_equip_distribution.exe
+!dist/auto_equip_distr_Pandas.exe
 !dist/ЛВУ - коди-назви.xlsx
 !dist/Групування.xlsx
-!dist/Договір.xlsx
+!dist/Склад.xlsx
 
 # IDE files
 .idea
