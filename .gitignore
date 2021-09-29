@@ -2,9 +2,7 @@
 *.xlsx
 dist/*.*
 !dist/auto_equip_distr_Pandas.exe
-!dist/ЛВУ - коди-назви.xlsx
-!dist/Групування.xlsx
-!dist/Склад.xlsx
+!dist/Групування-КодиЛВУ-Позиції.xlsx
 
 # IDE files
 .idea
