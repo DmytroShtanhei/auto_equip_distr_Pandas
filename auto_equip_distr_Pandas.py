@@ -64,9 +64,27 @@ df_grouping.insert(0, "N за/п", df_grouping.index)
 
 col_list = list(df_grouping)[9:]
 df_grouping.insert(7, "К-сть", df_grouping[col_list].sum(axis=1))
-print(df_grouping)
 
-# df_grouping.style.applymap(style_negative, props='color:red;').highlight_max(axis=0)
+# Create a Pandas Excel writer using XlsxWriter as the engine.
+writer = pd.ExcelWriter(f"Рознарядка {datetime.datetime.now().strftime('%Y-%m-%d_T%H%M%S')}.xlsx", engine='xlsxwriter')
 
-# Write to Excel file
-df_grouping.to_excel(f"Рознарядка {datetime.datetime.now().strftime('%Y-%m-%d_T%H%M%S')}.xlsx", index=False)
+# Convert the dataframe to an XlsxWriter Excel object.
+df_grouping.to_excel(writer, sheet_name='Sheet1', index=False)
+
+# Get the xlsxwriter objects from the dataframe writer object.
+workbook = writer.book
+worksheet = writer.sheets['Sheet1']
+
+header_format = workbook.add_format({
+    "rotation": 90,
+    "align": "center",
+    "bold": True,
+    "border": 1
+})
+
+# Write the column headers with the defined format.
+for col_num, value in enumerate(df_grouping.columns.values):
+    worksheet.write(0, col_num, value, header_format)
+
+# Close the Pandas Excel writer and output the Excel file.
+writer.save()
